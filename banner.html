@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body style="padding:20px">
+
+    enter text: <input id="input1" type="text" size='100' onkeyup="renderBanner()"><br/>
+    <canvas id="myCanvas" style="border:1px solid black;margin-top:20px"></canvas>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+
+ 
+    <script>
+
+       var font = "Rammetto One";
+       var text = "";
+
+       WebFont.load({
+            google: {
+            families: [font]
+            },
+            active: renderBanner
+       });
+
+
+       function renderBanner() {
+
+            text = document.getElementById("input1").value;
+
+            var canvas = document.getElementById('myCanvas');
+            var context = canvas.getContext('2d');
+
+
+            var cmpWidth = context.measureText(text).width;
+                canvas.width = cmpWidth+100;
+            canvas.height = 110;
+            context.font = '40pt ' + font;
+          
+
+            context.font = '40pt ' + font;
+
+
+            var gradient=context.createLinearGradient(0,0,0,70);
+            gradient.addColorStop("0","black");
+            gradient.addColorStop("0.7","black");
+            gradient.addColorStop("1.0","yellow");
+
+             var gradient2=context.createLinearGradient(0,0,0,70);
+            gradient2.addColorStop("0","yellow");
+            gradient2.addColorStop("0.7","white");
+            gradient2.addColorStop("1.0","white");
+
+            context.save();
+            context.lineWidth = 15;
+           
+            context.strokeStyle = 'black';
+
+             cmpWidth = context.measureText(text).width;
+            var cmpHeight = context.measureText(text).height;
+
+         
+
+
+            context.globalAlpha =0.5;
+            context.fillStyle='red';
+            context.fillRect(50,20,cmpWidth,70);
+            context.globalAlpha =0.4;
+            context.strokeText(text, 50, 80);
+            context.restore();
+
+         
+
+            context.lineWidth = 2;
+            context.strokeStyle = gradient2;
+            context.strokeText(text,50,70);
+
+
+            context.lineWidth = 15;
+            context.strokeStyle = 'black';
+            context.strokeText(text, 50, 75);
+
+            context.lineWidth = 15;
+            context.strokeStyle = 'black';
+            context.strokeText(text, 50, 70);
+
+            context.lineWidth = 10;
+            context.strokeStyle = 'yellow';
+           // context.fillStyle = gradient2;
+            context.strokeText(text, 50, 70);
+            
+            context.fillStyle=gradient;
+           // context.fillStyle = 'black';
+            context.fillText(text, 50, 70);
+         
+
+       }
+  
+    </script>
+  </body>
+</html>      
